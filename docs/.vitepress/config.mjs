@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: '/chisel-book-note/',
-  title: "Lzzs ChiselBook Note",
+  title: "Lzzs ChiselBook Notes",
   description: "A VitePress Site ,for Lzzs ChiselBook Notebook",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -19,7 +19,7 @@ export default defineConfig({
       { text: 'Blog', link: 'https://lzzs.fun/blog' },
     ],
 
-    logo: '/favicon.svg',  // 替换为你的logo
+    // logo: '/favicon.svg',  // 替换为你的logo
     // siteTitle: '----',  // 可自定义标题，不设置则默认为title
 
     footer: {
@@ -32,9 +32,11 @@ export default defineConfig({
 
         items: [
           { text: '首页', link: '/' },
+          { text: '未完成 Ch1', link: '/ch1' },
+          { text: '未完成 Ch2', link: '/ch2' },
+          { text: '未完成 Ch3', link: '/ch3' },
           { text: 'Markdown Examples1', link: '/markdown/markdown-examples' },
           { text: 'Markdown Examples2', link: '/markdown/md' },
-          { text: 'Runtime API Examples', link: '/api-examples' },
         ]
       }
     ],

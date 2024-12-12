@@ -1,115 +1,45 @@
-<!-- 
-<meta http-equiv="refresh" content="0; url=/md"> -->
+# 前言
 
-# VitePress
+:::info
 
-由 Vite 和 Vue 驱动的静态站点生成器
+本系列完全是对[《Digital Design with Chisel》](https://www.imm.dtu.dk/~masca/chisel-book.html)的内容加工，一切以原版为准。
 
-将 Markdown 变成优雅的文档，只需几分钟
+:::
 
-# VitePress 是什么？[](https://vitepress.dev/zh/guide/what-is-vitepress#what-is-vitepress)
+数字设计领域正处于一个激动人心的时代。随着Dennard定律的终结和摩尔定律的放缓，创新的需求变得前所未有地迫切。半导体公司依然致力于挖掘性能潜力，但这种提升的成本正在急剧增加。在此背景下，Chisel 提供了一种降低成本的方法，通过提升生产效率让设计者以更短时间完成更多设计，同时通过设计复用分摊验证成本。这不仅降低了非重复性工程（Non-Recurring Engineering, NRE）的开销，也为学生和个人创新者提供了便利。
 
-VitePress 是一个[静态站点生成器](https://en.wikipedia.org/wiki/Static_site_generator) (SSG)，专为构建快速、以内容为中心的站点而设计。简而言之，VitePress 获取用 Markdown 编写的内容，对其应用主题，并生成可以轻松部署到任何地方的静态 HTML 页面。
+## Chisel 的特点与理念
 
-只是想尝试一下？跳到[快速开始](https://vitepress.dev/zh/guide/getting-started)。
+Chisel 有别于传统硬件描述语言（如 VHDL 或 SystemVerilog），它是嵌套在 Scala 编程语言中的一组类和函数库，用于表达同步数字电路的基本构造单元。从本质上讲，Chisel 设计是一段运行后生成电路的 Scala 程序。虽然这种嵌套设计方式可能让人感到反直觉，但选择 Scala 而非创建独立硬件语言的背后逻辑是，软件领域在过去几十年中在设计方法上取得了巨大进步，直接采用现代编程语言可以直接利用这些成果，而无需额外适配。
 
----
+## Chisel 的学习挑战与教材意义
 
-# VitePress-template
+Chisel 一直被认为“难以学习”，这种观点主要源自领域专家为研究或商业需求所创建的大型复杂设计。然而，学习流行语言（如 C++）的人不会从 GCC 源码开始，而是通过丰富的课程、教材和面向新手的资源入门。《Digital Design with Chisel》这本书由 Martin 编写，作为学习 Chisel 的重要资源，以系统的结构和深入的练习帮助读者打牢基础。书中逐步引导，从安装和基础知识开始，通过练习巩固概念，最终使读者掌握设计简单实用的数字电路（例如 RISC 处理器）的技能。
 
-这是一个基于 [VitePress](https://vitepress.dev/) 的文档网站模板，包含以下功能和特点：
+## 五个版本的演进
 
-- 自定义 CSS 主题。
-- 包含 GitHub Actions 工作流，自动化部署到 GitHub Pages。
-- VitePress 路由由 `docs` 文件夹的文件结构自动生成。
+书的每一版都基于最新的 Chisel 和 Scala 版本，并添加了内容改进：
 
-## 快速开始
+1. **第二版**：
+   - 扩展了测试章节和时序构建模块的实例电路。
+   - 新增输入处理章节，包括输入同步、按键去抖设计和噪声信号滤波。
+   - 增强了示例设计章节，展示了多种 FIFO 实现及其在参数化和继承方面的应用。
+2. **第三版**：
+   - 所有示例更新至 Chisel 3.5.3 和 Scala 2.12.13。
+   - 测试框架从 PeekPokeTester 过渡到 ChiselTest。
+   - 新增如何在 Maven Central 发布 Chisel 设计的章节，展示硬件构件作为开源 Java 库发布的便利性。
+   - 提供更简单的示例来解释组件，同时扩展硬件生成章节，涵盖函数式编程的生成器写法。
+3. **第四版**：
+   - 升级到 Chisel 3.5.4，新增仲裁器、优先编码器和比较器等组合电路模块。
+   - 硬件生成章节新增更多函数式实例，例如利用简单的 2:1 仲裁电路构建公平仲裁树。
+   - 新增总线接口和 IO 设备存储映射连接的章节。
+   - 引入了一个关于调试、测试和验证的章节，后续计划进一步扩展。
+   - 处理器章节增加了更温和的微处理器介绍及数据路径示意图。
+4. **第五版**：
+   - 升级至 Chisel 3.5.6 和 Scala 2.13，移除旧版 Chisel 2 和 PeekPokeTester 的附录。
+   - 新增 ChiselEnum 等便捷特性。
+   - 扩展了处理器章节，并更新了 Leros 示例代码。
 
-### 1. 安装依赖
+## 重要致谢与语言翻译
 
-首先安装项目依赖：
-
-```bash
-npm install
-```
-
-### 2. 启动开发服务器
-
-运行以下命令启动本地开发服务器：
-
-```bash
-npm run docs:dev
-```
-
-开发服务器会默认运行在 `http://localhost:5173`，你可以在浏览器中访问。
-
-## 使用说明
-
-### 修改文档配置
-
-1. 打开
-
-   ```
-   docs/.vitepress/config.mjs
-   ```
-
-    文件，根据你的项目需求，修改以下内容：
-
-   - `title`：文档的标题。
-   - `description`：文档的描述信息。
-   - `themeConfig`：导航栏、侧边栏等配置。
-   - ...
-
-### 添加路由
-
-VitePress 会根据 `docs` 文件夹的目录结构自动生成路由。例如：
-
-- `docs/index.md` -> 路由 `/`
-- `docs/guide/getting-started.md` -> 路由 `/guide/getting-started`
-
-**注意**：需要手动在 `config.mjs` 的 `sidebar` 配置中添加相应的目录结构。
-
-示例：
-
-```javascript
-sidebar: [
-  {
-    text: '指南',
-    items: [
-      { text: '快速开始', link: '/guide/getting-started' },
-      { text: '配置', link: '/guide/configuration' }
-    ]
-  }
-]
-```
-
-## 部署
-
-此模板已集成 GitHub Actions 工作流，支持自动化部署到 GitHub Pages。
-
-### 步骤
-
-1. 在你的 GitHub 仓库中启用 Pages 功能，选择GitHub Actions 部署。
-2. 每次将代码推送到主分支后，GitHub Actions 会自动触发构建和部署流程。
-
-## 文件结构
-
-以下是项目的基本结构说明：
-
-```
-VitePress-template/
-├── docs/                   # 文档内容
-│   ├── .vitepress/         # VitePress 配置
-│   │   ├── config.mjs      # 文档的配置文件
-│   │   ├── theme/          # 自定义主题
-│   ├── index.md            # 首页内容
-│   ├──  ...         # 文档分类目录
-├── package.json            # 项目依赖和脚本
-├── README.md               # 项目说明文件
-```
-
-**修改主题**：可以通过修改 `docs/.vitepress/theme` 文件夹中的 CSS 文件来自定义样式。
-
-## 技术支持
-
-- VitePress 官方文档：<https://vitepress.dev/>
+书籍已被翻译为中文、日语和越南语，可免费获取。这离不开各位译者的努力和 Chisel 社区的支持。作者感谢学生和社区成员的反馈与努力，这些都为书籍内容的完善作出了重要贡献。
