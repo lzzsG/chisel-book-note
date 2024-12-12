@@ -2,7 +2,7 @@
 
 :::info
 
-本系列完全是对[《Digital Design with Chisel》](https://www.imm.dtu.dk/~masca/chisel-book.html)的内容加工，一切以原版为准。
+本笔记完全是对Martin Schoeberl的著作[《Digital Design with Chisel》](https://www.imm.dtu.dk/~masca/chisel-book.html)的内容的学习记录，一切以原版为准。
 
 :::
 

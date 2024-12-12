@@ -1,6 +1,6 @@
 # 第1章：引言
 
-本书介绍了一种现代硬件构造语言 Chisel [5]，用于数字系统设计。它与传统数字设计教材的主要区别在于，本书关注更高的抽象层次，使设计者能够在较短时间内构建更复杂的交互式数字系统。
+本书介绍了一种现代硬件构造语言 Chisel，用于数字系统设计。它与传统数字设计教材的主要区别在于，本书关注更高的抽象层次，使设计者能够在较短时间内构建更复杂的交互式数字系统。
 
 ### 目标读者
 
@@ -33,8 +33,6 @@ Chisel 本身是一种小型语言，其基础构造可以在数天内掌握。�
 
 本书针对平板电脑（如 iPad）或笔记本电脑阅读进行了优化，文本中嵌入了进一步阅读的链接（如 Wikipedia）。
 
-------
-
 ## 1.1 安装 Chisel 和 FPGA 工具
 
 Chisel 是一个 Scala 库，安装 Chisel 和 Scala 最简单的方法是使用 Scala 构建工具 sbt。Scala 依赖 Java JDK 1.8 或更高版本。由于 Oracle 修改了 Java 的许可协议，建议安装 AdoptOpenJDK 提供的 OpenJDK。
@@ -65,6 +63,211 @@ sudo apt install openjdk-8-jdk git make gtkwave
 
 由于 sbt 尚未作为可直接安装的 Debian 包发布，需要参考 sbt 的官方网站完成安装。
 
+> Note补充：在 VS Code 中运行 Scala 程序需要配置 Scala 的开发环境和工具链。以下是详细的步骤：
+>
+>
+> ### **1. 安装必要的工具**
+>
+> #### **1.1 安装 JDK**
+>
+> Scala 运行在 JVM 上，需要安装 JDK。
+>
+> 1. 下载并安装 [OpenJDK](https://jdk.java.net/) 或 [Oracle JDK](https://www.oracle.com/java/technologies/javase-downloads.html)。
+>
+> 2. 配置环境变量 `JAVA_HOME`，并确保命令行可以运行 `java`和 `javac`：
+>
+>    ```bash
+>    java -version
+>    javac -version
+>    ```
+>
+> #### **1.2 安装 Scala**
+>
+> 1. 下载并安装 Scala：
+>
+>    - 使用 [Scala 官网](https://www.scala-lang.org/download/) 提供的安装包。
+>
+>    - 或通过  Coursier 安装：
+>
+>      ```bash
+>      curl -fL https://get.coursier.io | bash
+>      cs setup
+>      cs install scala
+>      ```
+>
+> 2. 验证安装：
+>
+>    ```bash
+>    scala -version
+>    ```
+>
+> #### **1.3 安装 SBT**
+>
+> SBT（Scala Build Tool）是 Scala 的构建工具，用于编译和运行程序。
+>
+> 1. 安装 SBT：
+>
+>    - [SBT 官网](https://www.scala-sbt.org/download.html) 提供安装指南。
+>
+>    - 或通过包管理工具安装：
+>
+>      - Ubuntu：
+>
+>        ```bash
+>        sudo apt-get install sbt
+>        ```
+>
+>      - macOS：
+>
+>        ```bash
+>        brew install sbt
+>        ```
+>
+> 2. 验证安装：
+>
+>    ```bash
+>    sbt sbtVersion
+>    ```
+>
+> #### **1.4 安装 VS Code 和 Metals 插件**
+>
+> 1. 安装 VS Code：[VS Code 下载](https://code.visualstudio.com/)。
+> 2. 安装 Metals 插件：
+>    - 打开 VS Code，进入扩展市场（Ctrl+Shift+X）。
+>    - 搜索 "Metals" 并安装。
+>
+>
+> ### **2. 创建和运行一个 Scala 项目**
+>
+> #### **2.1 创建一个新的 Scala 项目**
+>
+> 1. 打开终端，运行：
+>
+>    ```bash
+>    sbt new scala/hello-world.g8
+>    ```
+>
+>    - 按提示输入项目名称，例如 `hello-scala`。
+>    - SBT 会生成一个标准的 Scala 项目结构。
+>
+> 2. 进入项目目录：
+>
+>    ```bash
+>    cd hello-scala
+>    ```
+>
+> #### **2.2 在 VS Code 中打开项目**
+>
+> 1. 在 VS Code 中打开项目目录：
+>
+>    ```bash
+>    code .
+>    ```
+>
+> 2. 启动 Metals：
+>
+>    - VS Code 会提示 "Import build"，点击 "Import build"。
+>    - Metals 会索引项目并配置 IntelliSense。
+>
+> #### **2.3 编辑代码**
+>
+> 1. 打开 `src/main/scala/example/Hello.scala` 文件。
+>
+> 2. 修改或添加代码：
+>
+>    ```scala
+>    object Hello {
+>      def main(args: Array[String]): Unit = {
+>        println("Hello, Scala with VS Code!")
+>      }
+>    }
+>    ```
+>
+> #### **2.4 编译和运行程序**
+>
+> 1. 在终端运行：
+>
+>    ```bash
+>    sbt run
+>    ```
+>
+>    或者直接在 VS Code 中：
+>
+>    - 点击 "Run" 按钮（右上角的绿色三角形）。
+>    - 或使用快捷键（F5）。
+>
+> ### **3. 直接运行单个 Scala 文件（简单程序）**
+>
+> 如果只想运行单个 Scala 文件，而不需要 SBT 项目结构：
+>
+> 1. 创建一个新的 Scala 文件：
+>
+>    - 在 VS Code 中创建文件，例如 `Hello.scala`。
+>
+>    - 添加以下代码：
+>
+>      ```scala
+>      object Hello extends App {
+>        println("Hello, Scala!")
+>      }
+>      ```
+>
+> 2. 在终端运行：
+>
+>    ```bash
+>    scala Hello.scala
+>    ```
+>
+> ### **4. 常见问题与解决方法**
+>
+> #### **4.1 "Java not found" 错误**
+>
+> - 确保已安装 JDK，并正确配置 `JAVA_HOME` 环境变量。
+>
+> - 在终端运行：
+>
+>   ```bash
+>   echo $JAVA_HOME
+>   java -version
+>   ```
+>
+> #### **4.2 "Import build failed"**
+>
+> - 确保 SBT 和 Metals 已正确安装。
+> - 删除 `.metals` 和 `.bloop` 文件夹，然后重新导入项目。
+>
+> #### **4.3 VS Code 无法识别 Scala**
+>
+> - 确保 Metals 插件已启用。
+>
+> - 检查 VS Code 的 Java 和 Metals 配置（在 `settings.json`中）：
+>
+>   ```json
+>   {
+>     "metals.javaHome": "/path/to/your/java",
+>     "metals.serverVersion": "latest.snapshot"
+>   }
+>   ```
+>
+> ### **5. 总结**
+>
+> - 工具链：
+>
+>   - 安装 JDK、Scala 和 SBT。
+>   - 配置 VS Code 和 Metals 插件。
+>
+> - 项目结构：
+>
+>   - 使用 SBT 创建标准项目结构。
+>   - 或直接运行单个 Scala 文件。
+>
+> - 运行程序：
+>
+>   - 使用 SBT 管理依赖和编译。
+>   - 通过 VS Code 的 Metals 提供的 IntelliSense 和运行功能，提高开发效率。
+>
+> 按照以上步骤，你可以轻松在 VS Code 中编写并运行 Scala 程序，同时借助 Metals 和 SBT 的功能，高效开发复杂的 Scala 项目。
+
 ### 1.1.3 Windows
 
 在 Windows 上：
@@ -82,14 +285,6 @@ sudo apt install openjdk-8-jdk git make gtkwave
 - **AMD**：Vivado Design Suite WebPACK Edition
 
 这些工具适用于 Windows 和 Linux，但不支持 macOS。此外，F4PGA 提供了针对特定 FPGA 的开源综合工具，是一种新选择。
-
-------
-
-通过本章的介绍，您可以初步了解 Chisel 的定位和安装方法，为接下来的数字设计探索奠定基础。
-
-
-
-
 
 ## 1.2 Hello World
 
@@ -110,8 +305,6 @@ Hello Chisel World!
 ```
 
 然而，这段代码实际上只是标准的 Scala 程序，而非硬件设计的代表性 Hello World 示例。它并未生成硬件，也不是 Chisel 的实际用法。
-
-------
 
 ## 1.3 Chisel 的 Hello World
 
@@ -157,14 +350,12 @@ class Hello extends Module {
 - **`blkReg`** 是一个 1 位寄存器，控制 LED 的闪烁状态。
 - 当计数器达到最大值时，计数器复位，且 LED 状态翻转。
 
-------
-
 ## 1.4 为 Chisel 选择 IDE
 
 本书对开发环境或编辑器没有强制要求，仅需通过 sbt 结合您喜欢的编辑器即可轻松学习基础内容。在传统实践中，命令行的提示符 `$` 表示在 shell/终端中执行的命令（无需实际键入 `$`）。例如：
 
 ```bash
-$ ls
+ls
 ```
 
 不过，使用集成开发环境（IDE）可以显著提高开发效率，因为 IDE 会在后台运行编译器，提供实时的代码反馈。由于 Chisel 是 Scala 的一个库，支持 Scala 的 IDE 同样支持 Chisel。以下是几种推荐的 IDE：
@@ -179,7 +370,7 @@ $ ls
 1. 使用 sbt 生成 Eclipse 项目：
 
    ```bash
-   $ sbt eclipse
+   sbt eclipse
    ```
 
 2. 将生成的项目导入 Eclipse（需要安装 sbt 的 Eclipse 插件）。
@@ -190,13 +381,7 @@ $ ls
 2. 在扩展栏搜索 "Metals"，安装 Scala 支持。
 3. 使用 **File > Open** 打开基于 sbt 的项目文件夹。
 
-------
-
 通过以上内容，您已了解 Chisel 的 Hello World 示例以及如何配置开发环境，这为后续深入学习奠定了坚实的基础。
-
-
-
-
 
 ## 1.5 源代码获取与电子书功能
 
@@ -212,7 +397,7 @@ $ ls
 本书的 GitHub 仓库还包含基于 Latex 的课程幻灯片，这些幻灯片用于丹麦技术大学为期 13 周的《数字电子学》课程。这些资源还包括基于 Chisel 的实验练习。如果您正在教授 Chisel 数字设计课程，可以根据需求自由调整幻灯片和实验内容。所有材料均为开源，您可以使用以下命令一键生成书籍和幻灯片：
 
 ```bash
-$ make
+make
 ```
 
 此命令会编译所有代码、运行测试、提取代码并使用 Latex 生成 PDF 文档。
@@ -220,8 +405,6 @@ $ make
 ### 电子书版本特点
 
 本书提供免费的 PDF 电子书版本以及亚马逊上销售的传统纸质版。电子书版优化了平板电脑（如 iPad）上的阅读体验，并包含许多指向额外资源和维基百科条目的链接。这些链接提供了书中未直接涵盖的背景知识（如二进制数系统）。
-
-------
 
 ## 1.6 延伸阅读
 
@@ -237,11 +420,11 @@ $ make
 
 - **[Chisel 官网](https://www.chisel-lang.org/)**
    下载 Chisel 并获取官方教程的起点。
-- **丹麦技术大学 Digital Electronics 2 课程网站**
+- **丹麦技术大学 [Digital Electronics 2](http://www2.imm.dtu.dk/courses/02139/) 课程网站**
    提供基于 Chisel 的 13 周课程幻灯片，相关源代码也包含在本书仓库中，可根据教学需求调整使用。
 - **[schoeberl/chisel-lab](https://github.com/schoeberl/chisel-lab)**
    包含适用于《Digital Electronics 2》课程的 Chisel 练习，同样适合自学者使用。
-- **Chisel 空项目模板**
+- **[Chisel 空项目模板](https://github.com/schoeberl/chisel-empty)**
    提供一个包含简单硬件（如加法器）和测试的极简项目，适合作为起点创建新的 GitHub 仓库。
 - **[Chisel3 Cheat Sheet](https://github.com/freechipsproject/chisel3/wiki/Cheat-Sheet)**
    用一页总结 Chisel 的主要构造，方便查阅。
@@ -256,15 +439,7 @@ $ make
 - **[Chisel 风格指南](https://github.com/ucb-bar/chisel-style-guide)**
    作者：Christopher Celio，提供了关于 Chisel 编码风格的建议。
 
-------
-
 通过本章节，您可以获取相关代码资源并深入探索 Chisel 的应用。这些资源覆盖了从基础到进阶的各类内容，既适合教学，也适合自学。
-
-
-
-
-
-
 
 ## 1.7 实践练习
 
@@ -275,8 +450,8 @@ $ make
 1. 克隆或分叉 Chisel 示例代码库：
 
    ```bash
-   $ git clone https://github.com/schoeberl/chisel-examples.git
-   $ cd chisel-examples/hello-world/
+   git clone https://github.com/schoeberl/chisel-examples.git
+   cd chisel-examples/hello-world/
    ```
 
 2. 查看 `src/main/scala/Hello.scala` 文件中的 Chisel 代码，了解如何描述闪烁的 LED。
@@ -286,23 +461,19 @@ $ make
 使用以下命令编译 Chisel 代码：
 
 ```bash
-$ sbt run
+sbt run
 ```
 
 首次运行时，工具会自动下载 Chisel 相关组件。编译完成后，将生成一个名为 `Hello.v` 的 Verilog 文件。
 
 在查看生成的 Verilog 文件时，可以注意以下几点：
 
-- 输入与输出
-
-  ：
+- 输入与输出：
 
   - Verilog 文件中包含两个输入信号：`clock` 和 `reset`，以及一个输出信号：`io_led`。
   - Chisel 模块中并未显式声明 `clock` 和 `reset` 信号，这些信号由 Chisel 自动生成并管理。
 
-- 自动化时钟与复位连接
-
-  ：
+- 自动化时钟与复位连接：
 
   - Chisel 提供了寄存器组件，这些组件会自动连接时钟和复位信号（如果需要），简化了硬件描述。
 
@@ -345,16 +516,9 @@ $ sbt run
    - 执行以下命令运行仿真：
 
      ```bash
-     $ sbt test
+     sbt test
      ```
 
    - 仿真器将在一百万个时钟周期内运行，具体的闪烁频率取决于仿真速度以及您的计算机性能。可能需要调整时钟频率以观察到模拟的闪烁效果。
 
-------
-
 通过完成以上练习，您将掌握 Chisel 基础开发流程、硬件综合及 FPGA 部署操作，为后续学习复杂设计打下坚实基础。
-
-
-
-
-

@@ -28,11 +28,11 @@ export default defineConfig({
     },
     sidebar: [
       {
-        text: 'ChiselBook',
+        text: 'ChiselBook Notes',
 
         items: [
           { text: '首页', link: '/' },
-          { text: '未完成 Ch1', link: '/ch1' },
+          { text: 'Ch1', link: '/ch1' },
           { text: '未完成 Ch2', link: '/ch2' },
           { text: '未完成 Ch3', link: '/ch3' },
           { text: 'Markdown Examples1', link: '/markdown/markdown-examples' },
