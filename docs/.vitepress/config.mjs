@@ -33,8 +33,10 @@ export default defineConfig({
         items: [
           { text: '首页', link: '/' },
           { text: 'Ch1', link: '/ch1' },
-          { text: '未完成 Ch2', link: '/ch2' },
-          { text: '未完成 Ch3', link: '/ch3' },
+          { text: 'Ch2', link: '/ch2' },
+          { text: 'Ch3', link: '/ch3' },
+          { text: 'Ch4', link: '/ch4' },
+          { text: 'Ch5', link: '/ch5' },
           { text: 'Markdown Examples1', link: '/markdown/markdown-examples' },
           { text: 'Markdown Examples2', link: '/markdown/md' },
         ]
@@ -55,7 +57,7 @@ export default defineConfig({
   },
   cleanUrls: true,
   markdown: {
-    // math: true   // 数学公式，需要 npm add -D markdown-it-mathjax3
+    math: true   // 数学公式，需要 npm add -D markdown-it-mathjax3
 
   }
 })

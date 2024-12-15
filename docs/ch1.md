@@ -336,7 +336,7 @@ class Hello extends Module {
 
   when(cntReg === CNT_MAX) {
     cntReg := 0.U
-    blkReg := ˜blkReg
+    blkReg := ~blkReg
   }
 
   io.led := blkReg
