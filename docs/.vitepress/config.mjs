@@ -40,6 +40,13 @@ export default defineConfig({
           { text: 'Ch6 Sequential Building Blocks', link: '/ch6' },
           { text: 'Ch7 Input Processing', link: '/ch7' },
           { text: 'Ch8 Finite-State Machines', link: '/ch8' },
+          { text: 'Ch9 Communicating State Machines', link: '/ch9' },
+          { text: 'Ch10 Hardware Generators', link: '/ch10' },
+          { text: 'Ch11 Example Designs', link: '/ch11' },
+          { text: 'Ch12 Interconnect', link: '/ch12' },
+          { text: 'Ch13 Debugging, Testing, and Verification', link: '/ch13' },
+          { text: 'Ch14 Design of a Processor', link: '/ch14' },
+          { text: 'Ch15 Contributing to Chisel', link: '/ch15' },
           { text: 'Markdown Examples1', link: '/markdown/markdown-examples' },
           { text: 'Markdown Examples2', link: '/markdown/md' },
         ]
