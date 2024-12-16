@@ -32,11 +32,14 @@ export default defineConfig({
 
         items: [
           { text: '首页', link: '/' },
-          { text: 'Ch1', link: '/ch1' },
-          { text: 'Ch2', link: '/ch2' },
-          { text: 'Ch3', link: '/ch3' },
-          { text: 'Ch4', link: '/ch4' },
-          { text: 'Ch5', link: '/ch5' },
+          { text: 'Ch1 Introduction', link: '/ch1' },
+          { text: 'Ch2 Basic Components', link: '/ch2' },
+          { text: 'Ch3 Build Process and Testing', link: '/ch3' },
+          { text: 'Ch4 Components', link: '/ch4' },
+          { text: 'Ch5 Combinational Building Blocks', link: '/ch5' },
+          { text: 'Ch6 Sequential Building Blocks', link: '/ch6' },
+          { text: 'Ch7 Input Processing', link: '/ch7' },
+          { text: 'Ch8 Finite-State Machines', link: '/ch8' },
           { text: 'Markdown Examples1', link: '/markdown/markdown-examples' },
           { text: 'Markdown Examples2', link: '/markdown/md' },
         ]
