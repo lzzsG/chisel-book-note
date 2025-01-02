@@ -4,7 +4,8 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   base: '/chisel-book-note/',
   title: "Lzzs ChiselBook Notes",
-  description: "A VitePress Site ,for Lzzs ChiselBook Notebook",
+  lang: 'zh-CN',
+  description: "本笔记完全是对Martin Schoeberl的著作《Digital Design with Chisel》的内容的学习记录。",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     lastUpdated: {

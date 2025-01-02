@@ -1,4 +1,8 @@
-## 8 有限状态机 (Finite-State Machines, FSM)
+---
+description: 本章介绍有限状态机（FSM）的基本概念、工作原理和设计方法。通过 Chisel 实现 FSM，展示了 Moore 和 Mealy 机的设计方法。
+---
+
+# 8 有限状态机 (Finite-State Machines, FSM)
 
 有限状态机（FSM）是数字设计中最基础和重要的模块之一。FSM 通过**状态**（states）和**状态转移**（state transitions）描述系统的行为，适用于需要基于输入进行顺序控制的电路。
 

@@ -1,4 +1,8 @@
-## **9 Communicating State Machines**
+---
+description: 本节介绍了如何使用多个 FSM 之间的信号通信来解决复杂问题，提高设计的可读性、可维护性和可扩展性。
+---
+
+# **9 Communicating State Machines**
 
 当一个问题太复杂，无法用单个有限状态机 (**FSM**) 表达时，我们可以将其拆分为多个更小、更简单的 FSM，这些 FSM 之间通过**信号通信**协同工作。这种方法称为 **FSM 分解 (factoring FSMs)**。
 

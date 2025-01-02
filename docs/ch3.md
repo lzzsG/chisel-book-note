@@ -1,3 +1,7 @@
+---
+description: 本章介绍如何使用 `sbt` 构建 Chisel 项目、组织代码结构，以及导入和测试模块。
+---
+
 # 3. **Build Process and Testing**
 
 要编写更复杂的 Chisel 代码，必须掌握如何构建项目、生成 Verilog 代码、在 FPGA 上执行设计，以及编写测试来验证电路的正确性。本章介绍如何使用 **`sbt`** 构建 Chisel 项目、组织代码结构，以及导入和测试模块。
@@ -97,8 +101,6 @@ Chisel 项目源代码可以组织成不同的 **包（Package）**，便于管�
 
 Chisel 支持编写测试来验证电路逻辑，通常与 `src/test/scala` 中的测试代码结合使用。测试框架可以验证 Chisel 模块生成的行为是否正确，后续章节将深入介绍 Chisel 测试框架。
 
-
-
 ## 3.1.2 **运行 `sbt` 命令**
 
 在 Chisel 项目中，可以通过简单的 `sbt` 命令来编译和执行代码。
@@ -191,8 +193,6 @@ Chisel 的工具链将高级硬件描述逐步转换成可综合的 Verilog 文�
 5. **仿真与调试**：
    - 使用 **Treadle** 等模拟器运行 FIRRTL 文件，验证设计的行为。
    - 可以生成波形文件（如 **Hello.vcd**），通过 GTKWave 或 Modelsim 等工具进行波形查看。
-
-
 
 ## 扩展：`sbt`、FIRRTL、`mill` 和 CIRCT
 
@@ -442,7 +442,7 @@ sbt "testOnly ExampleTest"
 
    - 运行所有测试：`sbt test`。
    - 运行单个测试类：`sbt "testOnly ClassName"`。
-   
+
 3. **测试结果**：输出详细测试执行状态，方便调试与验证。
 
 ScalaTest 是 ChiselTest 的基础工具，掌握 ScalaTest 可以帮助我们理解 Chisel 电路测试的机制，并为后续深入 ChiselTest 做好准备。
